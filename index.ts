@@ -38,8 +38,6 @@ async function fetchPage(page: number = 1) {
 }
 
 async function main() {
-  await prisma.anime.deleteMany({});
-
   // fetch last page number
   const res = await axios.get('https://api.jikan.moe/v4/anime');
   const pagination = res.data.pagination.last_visible_page;
