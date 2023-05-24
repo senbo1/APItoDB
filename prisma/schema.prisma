@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Anime {
+  id              String        @id @default(uuid())
+  mal_id          Int           
+  mal_url         String       
+  small_image_url String        
+  large_image_url String        
+  trailer_url     String?      
+  title           String?
+  title_japanese  String?
+  title_english   String?
+  type            String? 
+  source          String?
+  episodes        Int?
+  status          String?
+  airing          Boolean?
+  airedFrom       String?
+  airedTo         String?
+  airedString     String?
+  duration        String?
+  rating          String?
+  synposis        String?
+  background      String?
+  season          String?
+  year            Int?
+  broadcast       String?
+  producers       Producer[]
+  licensors       Licensors[]
+  studios         Studio[]
+  genres          Genre[]
+  demographics    Demographic[]
+}
+
+model Producer {
+  id     String  @id @default(uuid())
+  mal_id Int     @unique
+  name   String
+  mal_url String @unique 
+  anime  Anime[]
+}
+
+model Licensors {
+  id     String  @id @default(uuid())
+  mal_id Int     @unique
+  name   String
+  mal_url String @unique 
+  anime  Anime[]
+}
+
+model Studio {
+  id     String  @id @default(uuid())
+  mal_id Int     @unique
+  name   String
+  mal_url String @unique 
+  anime  Anime[]
+}
+
+model Genre {
+  id     String  @id @default(uuid())
+  mal_id Int     @unique
+  name   String
+  mal_url String @unique 
+  anime  Anime[]
+}
+
+model Demographic {
+  id     String  @id @default(uuid())
+  mal_id Int     @unique
+  name   String
+  mal_url String @unique 
+  anime  Anime[]
+}
+
+enum Type {
+  TV
+  Movie
+  OVA
+  ONA
+  Special
+}
