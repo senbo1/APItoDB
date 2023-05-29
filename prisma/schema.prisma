@@ -12,15 +12,15 @@ datasource db {
 
 model Anime {
   id              String        @id @default(uuid())
-  mal_id          Int           
-  mal_url         String       
-  small_image_url String        
-  large_image_url String        
-  trailer_url     String?      
+  mal_id          Int
+  mal_url         String
+  small_image_url String
+  large_image_url String
+  trailer_url     String?
   title           String?
   title_japanese  String?
   title_english   String?
-  type            String? 
+  type            String?
   source          String?
   episodes        Int?
   status          String?
@@ -43,49 +43,41 @@ model Anime {
 }
 
 model Producer {
-  id     String  @id @default(uuid())
-  mal_id Int     @unique
-  name   String
-  mal_url String @unique 
-  anime  Anime[]
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  anime   Anime[]
 }
 
 model Licensors {
-  id     String  @id @default(uuid())
-  mal_id Int     @unique
-  name   String
-  mal_url String @unique 
-  anime  Anime[]
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  anime   Anime[]
 }
 
 model Studio {
-  id     String  @id @default(uuid())
-  mal_id Int     @unique
-  name   String
-  mal_url String @unique 
-  anime  Anime[]
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  anime   Anime[]
 }
 
 model Genre {
-  id     String  @id @default(uuid())
-  mal_id Int     @unique
-  name   String
-  mal_url String @unique 
-  anime  Anime[]
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  anime   Anime[]
 }
 
 model Demographic {
-  id     String  @id @default(uuid())
-  mal_id Int     @unique
-  name   String
-  mal_url String @unique 
-  anime  Anime[]
-}
-
-enum Type {
-  TV
-  Movie
-  OVA
-  ONA
-  Special
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  anime   Anime[]
 }
