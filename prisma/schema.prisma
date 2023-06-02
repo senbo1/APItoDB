@@ -30,16 +30,21 @@ model Anime {
   airedString     String?
   duration        String?
   rating          String?
+  mal_score       Float?
+  mal_rank        Int?
+  mal_popularity  Int?
   synposis        String?
   background      String?
   season          String?
   year            Int?
   broadcast       String?
   producers       Producer[]
-  licensors       Licensors[]
+  licensors       Licensor[]
   studios         Studio[]
   genres          Genre[]
+  themes          Theme[]
   demographics    Demographic[]
+  characters      Character[]
 }
 
 model Producer {
@@ -50,7 +55,7 @@ model Producer {
   anime   Anime[]
 }
 
-model Licensors {
+model Licensor {
   id      String  @id @default(uuid())
   mal_id  Int     @unique
   name    String
@@ -71,13 +76,88 @@ model Genre {
   mal_id  Int     @unique
   name    String
   mal_url String  @unique
+  type    String  @default("anime")
   anime   Anime[]
+  manga   Manga[]
 }
 
 model Demographic {
   id      String  @id @default(uuid())
   mal_id  Int     @unique
   name    String
+  type    String  @default("anime")
   mal_url String  @unique
   anime   Anime[]
+  manga   Manga[]
+}
+
+model Character {
+  id        String  @id @default(uuid())
+  mal_id    Int     @unique
+  mal_url String?  @unique
+  name      String
+  name_kanji String?
+  about    String?
+  image_url String?
+  favorites Int    @default(0)
+  anime     Anime[]
+  manga     Manga[]
+
+}
+
+model Manga {
+  id              String          @id @default(uuid())
+  mal_id          Int
+  mal_url         String
+  small_image_url String
+  large_image_url String
+  approved        Boolean?
+  title           String?
+  title_english   String?
+  title_japanese  String?
+  type            String?
+  chapters        Int?
+  volumes         Int?
+  status          String?
+  publishing      Boolean?
+  publishedFrom   String?
+  publishedTo     String?
+  publishedString String?
+  mal_score       Float?
+  mal_rank        Int?
+  mal_popularity  Int?
+  synopsis        String?
+  background      String?
+  authors         Author[]
+  serializations  Serialization[]
+  genres          Genre[]
+  themes          Theme[]
+  demographics    Demographic[]
+  characters      Character[]
+}
+
+model Author {
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  manga   Manga[]
+}
+
+model Serialization {
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  mal_url String  @unique
+  manga   Manga[]
+}
+
+model Theme {
+  id      String  @id @default(uuid())
+  mal_id  Int     @unique
+  name    String
+  type    String  @default("anime")
+  mal_url String  @unique
+  anime   Anime[]
+  manga   Manga[]
 }

@@ -1,3 +1,60 @@
+type JikanResponse = {
+  pagination: Pagination;
+  data: AnimeData[];
+};
+
+type AnimeData = {
+  mal_id: number;
+  url: string;
+  images: {
+    jpg: ImageUrls;
+    webp: ImageUrls;
+  };
+  trailer: {
+    youtube_id: string;
+    url: string;
+    embed_url: string;
+    images: TrailerImages;
+  };
+  approved: boolean;
+  titles: Title[];
+  title: string;
+  title_english: string;
+  title_japanese: string;
+  title_synonyms: string[];
+  type: string;
+  source: string;
+  episodes: number;
+  status: string;
+  airing: boolean;
+  aired: Aired;
+  duration: string;
+  rating: string;
+  score: number;
+  scored_by: number;
+  rank: number;
+  popularity: number;
+  members: number;
+  favorites: number;
+  synopsis: string;
+  background: string;
+  season: string;
+  year: number;
+  broadcast: {
+    day: string;
+    time: string;
+    timezone: string;
+    string: string;
+  };
+  producers: Producer[];
+  licensors: Licensor[];
+  studios: Studio[];
+  genres: Genre[];
+  explicit_genres: any[];
+  themes: Theme[];
+  demographics: Demographic[];
+};
+
 type Pagination = {
   last_visible_page: number;
   has_next_page: boolean;
@@ -79,66 +136,11 @@ type Theme = {
   url: string;
 };
 
-type AnimeData = {
-  mal_id: number;
-  url: string;
-  images: {
-    jpg: ImageUrls;
-    webp: ImageUrls;
-  };
-  trailer: {
-    youtube_id: string;
-    url: string;
-    embed_url: string;
-    images: TrailerImages;
-  };
-  approved: boolean;
-  titles: Title[];
-  title: string;
-  title_english: string;
-  title_japanese: string;
-  title_synonyms: string[];
-  type: string;
-  source: string;
-  episodes: number;
-  status: string;
-  airing: boolean;
-  aired: Aired;
-  duration: string;
-  rating: string;
-  score: number;
-  scored_by: number;
-  rank: number;
-  popularity: number;
-  members: number;
-  favorites: number;
-  synopsis: string;
-  background: string;
-  season: string;
-  year: number;
-  broadcast: {
-    day: string;
-    time: string;
-    timezone: string;
-    string: string;
-  };
-  producers: Producer[];
-  licensors: Licensor[];
-  studios: Studio[];
-  genres: Genre[];
-  explicit_genres: any[];
-  themes: Theme[];
-  demographics: Demographic[];
-};
-
-export type AnimeResponse = {
-  pagination: Pagination;
-  data: AnimeData[];
-};
-
 type Demographic = {
   mal_id: number;
   type: string;
   name: string;
   url: string;
 };
+
+export default JikanResponse;
